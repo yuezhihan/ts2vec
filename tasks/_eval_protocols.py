@@ -79,6 +79,18 @@ def fit_knn(features, y):
     return pipe
 
 def fit_ridge(train_features, train_y, valid_features, valid_y, MAX_SAMPLES=100000):
+    # Replace NaN and infinite values with 0
+    train_features = np.nan_to_num(train_features, nan=0.0, posinf=0.0, neginf=0.0)
+    train_y = np.nan_to_num(train_y, nan=0.0, posinf=0.0, neginf=0.0)
+    valid_features = np.nan_to_num(valid_features, nan=0.0, posinf=0.0, neginf=0.0)
+    valid_y = np.nan_to_num(valid_y, nan=0.0, posinf=0.0, neginf=0.0)
+
+    # Ensure values are within the range of float64
+    train_features = np.clip(train_features, -1e308, 1e308)
+    train_y = np.clip(train_y, -1e308, 1e308)
+    valid_features = np.clip(valid_features, -1e308, 1e308)
+    valid_y = np.clip(valid_y, -1e308, 1e308)
+
     # If the training set is too large, subsample MAX_SAMPLES examples
     if train_features.shape[0] > MAX_SAMPLES:
         split = train_test_split(

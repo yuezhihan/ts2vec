@@ -5,7 +5,6 @@ import numpy as np
 from models import TSEncoder
 from models.losses import hierarchical_contrastive_loss
 from utils import take_per_row, split_with_nan, centerize_vary_length_series, torch_pad_nan
-import math
 
 class TS2Vec:
     '''The TS2Vec model'''

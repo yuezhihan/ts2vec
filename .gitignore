@@ -1,6 +1,21 @@
+# Ignore dataset files that are not Python
 /datasets/*[!.py]
+
+# Ignore Jupyter notebook checkpoints
 .ipynb_checkpoints
+*.idea/
+# Ignore Python cache files
 __pycache__
+
+# Ignore everything in the training folder except .py files
 training/*
+!training/*.py
+
+# Ignore specific nohup files in the scripts folder
 scripts/_nohup
+
+# Ignore rsync filter file
 .rsync-filter
+
+# Ignore the ts2vec_env directory (virtual environment)
+ts2vec_env/

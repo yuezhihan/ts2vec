@@ -41,7 +41,7 @@ class TSEncoder(nn.Module):
     def forward(self, x, mask=None):  # x: B x T x input_dims
         nan_mask = ~x.isnan().any(axis=-1)
         x[~nan_mask] = 0
-        x = self.input_fc(x)  # B x T x Ch
+        x = self.input_fc(x)  # B x T x Ch NOTE: Ch = output_dims (I think...)
         
         # generate & apply mask
         if mask is None:
